@@ -6,11 +6,9 @@
 /*   By: khaimer <khaimer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 01:48:01 by khaimer           #+#    #+#             */
-/*   Updated: 2022/10/27 00:42:05 by khaimer          ###   ########.fr       */
+/*   Updated: 2022/10/12 18:04:27 by khaimer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include "libft.h"
 
 int	ft_atoi(const char *str)
 {

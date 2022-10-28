@@ -1,76 +1,105 @@
 /* ************************************************************************** */
-/*																			*/
-/*							                            :::      ::::::::   */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: khaimer <khaimer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 18:09:12 by khaimer           #+#    #+#             */
-/*   Updated: 2022/10/15 21:53:25 by khaimer          ###   ########.fr       */
+/*   Updated: 2022/10/15 00:13:06 by khaimer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-static int	char_finder(const char s, const char *set)
+#include <stdio.h>
+#include <string.h>
+int        scanner(char const *s1, char const *set)
 {
-	int	i;
+    int i;
+    int j;
+    int start;
 
-	i = 0;
-	while (set[i])
-	{
-		if (set[i] == s)
-			return (1);
-		i++;
-	}
-	return (0);
+    start = 0;
+    i = 0;
+    j = 0;
+    while (s1 && set)
+    {
+        if(s1[i] == set[j])
+        {
+            i++;
+            start++;
+            continue;
+        }
+        if (s1[i] != set[j])
+        {
+            j++;
+            if(set[j] == '\0')
+              return(start);
+            continue;
+        }
+    }
+    return(start);
+}
+int back_scanner(char const *s1, char const *set)
+{
+    int len;
+    int end;
+    int j;
+
+    j = 0;
+    end = 0;
+    len = (ft_strlen(s1) - 1);
+    while(s1[len] && set)
+    {
+        if(s1[len] == set[j])
+        {
+            len--;
+            end++;
+            continue;
+        }
+        else if(s1[len] != set[j])
+        {
+            j++;
+            if(set[j] == '\0')
+              return(end);
+            continue;
+        }
+    }
+    return(end);
 }
 
-static int	f_front(const char *s1, const char *set)
+
+char *ft_strtrim(char const *s1, char const *set)
 {
-	int	i;
-
-	i = 0;
-	while (s1)
-	{
-		if (char_finder(s1[i], set))
-			i++;
-		else
-			break ;
-	}
-	return (i);
+    int zab;
+    int start;
+    int end;
+    int len;
+    char *string;
+    
+    len = ft_strlen(s1);
+    start = scanner(s1, set);
+    end = back_scanner(s1, set);
+    string = malloc(((len + 1) - (end + start))*sizeof(char));
+    zab = len - end;
+    while(s1)
+    {
+        *string = s1[start];
+        start++;
+        string++;
+      if(s1[start] == s1[zab])
+      {
+        *string = '\0';
+        return(string);
+      }
+    }
+    return(string);
 }
-
-static int	f_back(const char *s1, const char *set)
+int main()
 {
-	int	len;
-
-	len = (ft_strlen(s1)-1);
-	while (s1[len])
-	{
-		if (char_finder(s1[len], set))
-			len--;
-		else
-			break ;
-	}
-	return (len);
+    char *s1 = "AABHDHJKJBAA";
+    char *set = "AB";
+    char *ret = ft_strtrim(s1, set);
+    printf("%s",ret);
 }
-
-char	*ft_strtrim(char const *s1, char const *set)
-{
-	int		start;
-	int		back;
-	int		space;
-	char	*string;
-
-	if (!s1)
-		return (NULL);
-	start = f_front(s1, set);
-	if (!s1[start])
-		return (ft_strdup(""));
-	back = f_back(s1, set);
-	start = f_front(s1, set);
-	space = (back - start) + 1;
-	string = ft_substr(s1, start, space);
-	return (string);
-}
+	

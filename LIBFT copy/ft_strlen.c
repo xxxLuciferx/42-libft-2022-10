@@ -6,11 +6,11 @@
 /*   By: khaimer <khaimer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 13:33:26 by khaimer           #+#    #+#             */
-/*   Updated: 2022/10/27 00:44:47 by khaimer          ###   ########.fr       */
+/*   Updated: 2022/10/10 22:13:51 by khaimer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <stdio.h>
 
 size_t	ft_strlen(const char *s)
 {

@@ -6,20 +6,20 @@
 /*   By: khaimer <khaimer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 13:44:07 by khaimer           #+#    #+#             */
-/*   Updated: 2022/10/27 00:45:47 by khaimer          ###   ########.fr       */
+/*   Updated: 2022/10/12 04:26:31 by khaimer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <stdio.h>
 
 void	ft_bzero(void *s, size_t n)
 {
-	size_t	a;
+	size_t	i;
 
-	a = 0;
-	while (a < n)
+	i = 0;
+	while (i < n && ((unsigned char *)s)[i])
 	{
-		((unsigned char *) s)[a] = '\0';
-		a++;
+		((unsigned char *) s)[i] = '\0';
+		i++;
 	}
 }
